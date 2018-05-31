@@ -42,7 +42,7 @@ function img() {
 function serve(done) {
   browser.init({
     server: {
-      baseDir: './src'
+      baseDir: './dist'
     }
   });
   done();
