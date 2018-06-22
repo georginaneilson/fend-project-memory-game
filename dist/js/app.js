@@ -1,8 +1,12 @@
 // Handler when the DOM is fully loaded
+let open = [];
+let matchedCards = [];
+let moves = 0;
+
+
 document.addEventListener("DOMContentLoaded", function() {
-  console.log('ready');
-  let cardList = [];
-  const cardSymbol = [
+  let openCards = [];
+  const icons = [
     'diamond',
     'paper-plane-o',
     'anchor',
@@ -20,89 +24,87 @@ document.addEventListener("DOMContentLoaded", function() {
     'paper-plane-o',
     'cube',
   ];
-  const cards = document.getElementsByClassName('card');
-
-
-  createList(cardSymbol, cardList);
-  shuffle(cardList);
-  document.getElementById('deck').innerHTML = (cardList.join(""));
-  addListener(cards);
-  console.log(open);
-
+  populateCards(icons)
 });
 
+document.addEventListener('click', listen, false);
 
 /*
  * Create a list that holds all of your cards
  */
-const cards = document.getElementsByClassName('card');
-let open = [];
-function createList(icons, htmlCards) {
+
+function populateCards(icons) {
+  shuffle(icons);
+  let array = [];
   for (i = 0; i < icons.length; i++) {
-    htmlCards.push('<li class="card"><i class="fa fa-' + icons[i] + '"></i></li>');
+    array.push('<li class="card" type="' + icons[i] + '"><i class="fa fa-' + icons[i] + '"></i></li>');
   }
+  document.getElementById('deck').innerHTML = (array.join(""));
 }
 
-function addListener(cards) {
-  for (var i = 0; i < cards.length; i++) {
-    cards[i].addEventListener('click', displaySymbol);
 
-  }
-}
+function listen(event) {
+  if ((event.target.classList.contains('match')) || (event.target.classList.contains('show'))) {
+    //do nothing
+  } else if (event.target.classList.contains('card')) {
+    const card = event.target;
+    //countMove();
+    showSymbol(card);
+    checkMatch(card, matchedCards);
+    completeGame(matchedCards);
+  //  let move = countMove();
+    //move /= 2;
 
-function displaySymbol() {
-  console.log('clicked')
-  this.classList.add('open', 'show');
-  openList(open);
-};
-
-function openList(array) {
-  if (array.length >= 2){
-    array.length = 0;
-    removeClass(cards, 'show');
-    removeClass(cards, 'open');
-    array.push(this);
   } else {
-  array.push(this);
-}
-  compare(array);
-};
+    //do nothing
+  }
 
-function compare(array) {
-  console.log(array[0]);
-  console.log(array[1]);
-  if (array.length >= 2){
-    if (array[0] === array[1]){
-      console.log('match')
-    } else {
-      console.log('not a match')
-    }
+}
+
+let countMove = (function () {
+    let counter = 0;
+    return function () {counter ++; return counter}
+})();
+
+
+function showSymbol(card) {
+  card.classList.add('open', 'show');
+}
+
+function checkMatch(card, array) {
+  open.push(card);
+  let length = open.length;
+
+  if (length < 2) {
+    //do nothing
+  } else if (length === 2) {
+    document.getElementById("moves").innerHTML = countMove();
+    if (open[0].type == open[1].type) {
+      removeClass(open[0], open[1]);
+      open[0].classList.add('match');
+      open[1].classList.add('match');
+      array.push(open[0]);
+      array.push(open[1]);
+      open.splice(0, 2);
+    } else {}
+
   } else {
-    //removeClass(cards, 'show');
-    //removeClass(cards, 'open');
+    removeClass(open[0], open[1]);
+    open.splice(0, 2)
+
   }
 }
 
-function removeClass(elements, myClass) {
+function removeClass(index0, index1) {
+  index0.classList.remove('show', 'open');
+  index1.classList.remove('show', 'open');
+}
 
-  // if there are no elements, we're done
-  if (!elements) { return; }
-
-  // if we have a selector, get the chosen elements
-  if (typeof(elements) === 'string') {
-    elements = document.querySelectorAll(elements);
-  }
-
-  // if we have a single DOM element, make it an array to simplify behavior
-  else if (elements.tagName) { elements=[elements]; }
-
-  // create pattern to find class name
-  var reg = new RegExp('(^| )'+myClass+'($| )','g');
-
-  // remove class from all chosen elements
-  for (var i=0; i<elements.length; i++) {
-    elements[i].className = elements[i].className.replace(reg,' ');
-  }
+function completeGame(array) {
+  if (array.length === 16) {
+    const deck = document.getElementById('deck');
+    deck.remove();
+  } else {}
 }
 
 /*
