@@ -41,7 +41,7 @@ function populateCards(icons) {
   }
   document.getElementById('deck').innerHTML = (array.join(""));
 }
-
+3
 
 function listen(event) {
   if ((event.target.classList.contains('match')) || (event.target.classList.contains('show'))) {
@@ -63,9 +63,24 @@ function listen(event) {
 
 let countMove = (function () {
     let counter = 0;
-    return function () {counter ++; return counter}
+    return function () {
+      console.log('test')
+      counter ++;
+      starRating(counter);
+       return counter}
 })();
 
+function starRating(counter){
+  let array = document.getElementsByClassName('fa-star');
+  if (counter > 10) {
+    array[0].remove();
+  } else if (counter > 5){
+    array[1].remove();
+    //do nothing
+  } else if (counter > 2){
+    array[2].remove();
+  }
+}
 
 function showSymbol(card) {
   card.classList.add('open', 'show');
@@ -79,6 +94,7 @@ function checkMatch(card, array) {
     //do nothing
   } else if (length === 2) {
     document.getElementById("moves").innerHTML = countMove();
+
     if (open[0].type == open[1].type) {
       removeClass(open[0], open[1]);
       open[0].classList.add('match');
