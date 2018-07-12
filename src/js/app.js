@@ -2,6 +2,7 @@
 let open = [];
 let matchedCards = [];
 let moves = 0;
+let move = 0;
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -33,6 +34,8 @@ document.addEventListener('click', listen, false);
  * Create a list that holds all of your cards
  */
 
+
+
 function populateCards(icons) {
   shuffle(icons);
   let array = [];
@@ -48,12 +51,10 @@ function listen(event) {
     //do nothing
   } else if (event.target.classList.contains('card')) {
     const card = event.target;
-    //countMove();
     showSymbol(card);
     checkMatch(card, matchedCards);
     completeGame(matchedCards);
-  //  let move = countMove();
-    //move /= 2;
+
 
   } else {
     //do nothing
@@ -70,16 +71,27 @@ let countMove = (function () {
        return counter}
 })();
 
+// function starRating(counter){
+//   let array = document.getElementsByClassName('fa-star');
+//   if (counter > 10) {
+//     array[0].remove();
+//   } else if (counter > 5){
+//     array[1].remove();
+//     //do nothing
+//   } else if (counter > 2){
+//     array[2].remove();
+//   }
+// }
+
 function starRating(counter){
   let array = document.getElementsByClassName('fa-star');
   if (counter > 10) {
-    array[0].remove();
-  } else if (counter > 5){
-    array[1].remove();
-    //do nothing
-  } else if (counter > 2){
-    array[2].remove();
-  }
+     array[0].remove();
+   } else if (counter === 5){
+     array[1].remove();
+   } else if (counter === 2){
+     array[2].remove();
+   }
 }
 
 function showSymbol(card) {
@@ -93,7 +105,11 @@ function checkMatch(card, array) {
   if (length < 2) {
     //do nothing
   } else if (length === 2) {
-    document.getElementById("moves").innerHTML = countMove();
+
+
+    move = ++move;
+    console.log('move = ' + move);
+    starRating(move)
 
     if (open[0].type == open[1].type) {
       removeClass(open[0], open[1]);
