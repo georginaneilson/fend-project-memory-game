@@ -17,7 +17,7 @@
       <!-- <h1>Matching game</h1> -->
     </header>
     <button id="start-btn" class="btn">Start game</button>
-    <p id="timer"></p>
+    <p id="timer"><span id="minutes"></span><span id="seconds">0 seconds</span></p>
 
     <div id="myModal" class="modal">
 
@@ -25,6 +25,9 @@
       <div class="modal-content">
         <span class="close">&times;</span>
         <p>Game complete</p>
+        <p id="finalMove">finalMove</p>
+        <p id="finalStar">finalStar</p>
+        <p>Completed in <span class="finals" id="finalTime"></span></p>
         <button id="restart-btn" class="btn">Restart game</button>
       </div>
 
@@ -42,7 +45,7 @@
 
         	<span class="moves" id="moves"></span> Moves
 
-            <div class="restart">
+            <div id="refresh" class="restart">
         		<i class="fa fa-repeat"></i>
         	</div>
         </section>

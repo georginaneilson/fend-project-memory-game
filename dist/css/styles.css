@@ -22,11 +22,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; }
+  flex-direction: column;
+  margin-right: 24px;
+  margin-left: 24px;
+  max-width: 1000px; }
 
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300; }
+
+#timer {
+  display: none;
+  margin-left: auto; }
+
+.finals {
+  font-weight: 600; }
 
 .btn {
   border: none;

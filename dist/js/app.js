@@ -6,35 +6,36 @@ let move = 0;
 let openCards = [];
 const icons = [
   'diamond',
-    'paper-plane-o',
-    'anchor',
-    'bolt',
-    'cube',
-    'anchor',
-    'leaf',
-    'bicycle',
-    'diamond',
-    'bomb',
-    'leaf',
-    'bomb',
-    'bolt',
-    'bicycle',
-    'paper-plane-o',
-    'cube',
+  'diamond'
+  // 'paper-plane-o',
+  // 'anchor',
+  // 'bolt',
+  // 'cube',
+  // 'anchor',
+  // 'leaf',
+  // 'bicycle',
+  // 'diamond',
+  // 'bomb',
+  // 'leaf',
+  // 'bomb',
+  // 'bolt',
+  // 'bicycle',
+  // 'paper-plane-o',
+  // 'cube',
 ];
 
 
 document.getElementById("start-btn").addEventListener("click", startGame);
 document.getElementById("restart-btn").addEventListener("click", restartGame);
+//document.getElementById("refresh-btn").addEventListener("click", restartGame);
 
 
 function startGame() {
 
-
-
-  console.log(matchedCards.length)
+  document.getElementById("timer").style.display = "block";
+  startTimer();
   document.getElementById("start-btn").remove();
-  document.getElementById('score-panel-container').innerHTML = '<section class="score-panel"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><span class="moves" id="moves"></span> Moves<div class="restart"><i class="fa fa-repeat"></i></div></section><ul class="deck" id="deck"></ul>'
+  document.getElementById('score-panel-container').innerHTML = '<section class="score-panel"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><span class="moves" id="moves"></span> Moves <div id="refresh-btn" class="restart"><i class="fa fa-repeat"></i></div></section><ul class="deck" id="deck"></ul>'
   populateCards(icons)
   document.addEventListener('click', listen, false);
 }
@@ -43,13 +44,11 @@ function restartGame() {
 
   let open = [];
   matchedCards = [];
-
   let move = 0;
-
-
-  console.log('matched cards =' + matchedCards.length)
+  document.getElementById("timer").innerHTML = '';
   modal.style.display = "none";
-  console.log('restart the game');
+
+  startTimer();
   document.getElementById('score-panel-container').innerHTML = '<section class="score-panel"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><span class="moves" id="moves"></span> Moves<div class="restart"><i class="fa fa-repeat"></i></div></section><ul class="deck" id="deck"></ul>'
   populateCards(icons)
   document.addEventListener('click', listen, false);
@@ -87,36 +86,25 @@ function listen(event) {
 }
 
 //start timer
+const timer = document.getElementById('timer');
+const start = Date.now();
 
-// Set the date we're counting down to
-//var countDownDate = new Date().getTime();
+function startTimer() {
 
-// Update the count down every 1 second
-var x = setInterval(function() {
+  interval = setInterval(function() {
+    const delta = Date.now() - start; // milliseconds elapsed since start
+    let elapsedTime = (Math.floor(delta / 1000));
 
-  // Get todays date and time
-  var now = new Date(0,0,0,0,);
+    timer.innerHTML = elapsedTime + ' seconds';
+    if (elapsedTime > 59) {
+      let test = ((Math.floor(elapsedTime / 60)) * 60);
+      let minutes = (Math.floor(elapsedTime / 60)) ;
+      let seconds = (elapsedTime - test);
+      timer.innerHTML = minutes + ' minutes ' + seconds + ' seconds' ;
+    }
+  }, 100);
 
-  // Find the distance between now an the count down date
-  //var distance = countDownDate - now;
-
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(now / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((now % (1000 * 60)) / 1000);
-
-  // Display the result in the element with id="demo"
-  document.getElementById("timer").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-
-  // If the count down is finished, write some text
-  // if (distance < 0) {
-  //   clearInterval(x);
-  //   document.getElementById("demo").innerHTML = "EXPIRED";
-  // }
-}, 1000);
-
+}
 
 //end timer
 
@@ -146,7 +134,6 @@ function checkMatch(card) {
 
 
     move = ++move;
-    console.log('move = ' + move);
     document.getElementById("moves").innerHTML = move;
     starRating(move)
 
@@ -173,12 +160,16 @@ function removeClass(index0, index1) {
 
 function completeGame() {
 
-  if (matchedCards.length === 16) {
+  if (matchedCards.length === 2) {
+    //let finalTime = d
+    clearInterval(interval);
+    console.log(timer.innerHTML)
+    document.getElementById('finalTime').innerHTML = timer.innerHTML;
 
-    console.log('array = ' + matchedCards);
-    console.log('finished')
     const deck = document.getElementById('deck');
     deck.remove();
+
+    timer.style.display = "none";
     displayModal();
     move = 0;
     matchedCards = [];
@@ -192,27 +183,14 @@ function completeGame() {
 // Get the modal
 var modal = document.getElementById('myModal');
 
-
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
 // When the user clicks on the button, open the modal
 function displayModal() {
-    modal.style.display = "block";
+  modal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
+function printScore() {
 
-// When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
+}
 
 
 
