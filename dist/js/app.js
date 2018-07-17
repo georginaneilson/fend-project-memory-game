@@ -27,17 +27,18 @@ const icons = [
 
 document.getElementById("start-btn").addEventListener("click", startGame);
 document.getElementById("restart-btn").addEventListener("click", restartGame);
-//document.getElementById("refresh-btn").addEventListener("click", restartGame);
+
 
 
 function startGame() {
+document.getElementById("timer").style.display = "block";
 
-  document.getElementById("timer").style.display = "block";
   startTimer();
   document.getElementById("start-btn").remove();
   document.getElementById('score-panel-container').innerHTML = '<section class="score-panel"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><span class="moves" id="moves"></span> Moves <div id="refresh-btn" class="restart"><i class="fa fa-repeat"></i></div></section><ul class="deck" id="deck"></ul>'
   populateCards(icons)
   document.addEventListener('click', listen, false);
+  //document.getElementById("refresh-btn").addEventListener("click", restartGame);
 }
 
 function restartGame() {
@@ -49,9 +50,10 @@ function restartGame() {
   modal.style.display = "none";
 
   startTimer();
-  document.getElementById('score-panel-container').innerHTML = '<section class="score-panel"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><span class="moves" id="moves"></span> Moves<div class="restart"><i class="fa fa-repeat"></i></div></section><ul class="deck" id="deck"></ul>'
+  document.getElementById('score-panel-container').innerHTML = '<section class="score-panel"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><span class="moves" id="moves"></span> Moves <div id="refresh-btn" class="restart"><i class="fa fa-repeat"></i></div></section><ul class="deck" id="deck"></ul>'
   populateCards(icons)
   document.addEventListener('click', listen, false);
+  //document.getElementById("refresh-btn").addEventListener("click", restartGame);
 }
 
 /*
@@ -86,11 +88,12 @@ function listen(event) {
 }
 
 //start timer
-const timer = document.getElementById('timer');
-const start = Date.now();
+
 
 function startTimer() {
 
+  const timer = document.getElementById('timer');
+  const start = Date.now();
   interval = setInterval(function() {
     const delta = Date.now() - start; // milliseconds elapsed since start
     let elapsedTime = (Math.floor(delta / 1000));
@@ -98,9 +101,9 @@ function startTimer() {
     timer.innerHTML = elapsedTime + ' seconds';
     if (elapsedTime > 59) {
       let test = ((Math.floor(elapsedTime / 60)) * 60);
-      let minutes = (Math.floor(elapsedTime / 60)) ;
+      let minutes = (Math.floor(elapsedTime / 60));
       let seconds = (elapsedTime - test);
-      timer.innerHTML = minutes + ' minutes ' + seconds + ' seconds' ;
+      timer.innerHTML = minutes + ' minutes ' + seconds + ' seconds';
     }
   }, 100);
 
@@ -118,6 +121,7 @@ function starRating(counter) {
   } else if (counter === 2) {
     array[2].remove();
   }
+  return array.length;
 }
 
 function showSymbol(card) {
@@ -163,16 +167,17 @@ function completeGame() {
   if (matchedCards.length === 2) {
     //let finalTime = d
     clearInterval(interval);
-    console.log(timer.innerHTML)
-    document.getElementById('finalTime').innerHTML = timer.innerHTML;
+
 
     const deck = document.getElementById('deck');
     deck.remove();
 
     timer.style.display = "none";
     displayModal();
+    printScore();
     move = 0;
     matchedCards = [];
+
   } else {}
 }
 
@@ -188,12 +193,17 @@ function displayModal() {
   modal.style.display = "block";
 }
 
+
+
 function printScore() {
-
+  document.getElementById('finalTime').innerHTML = timer.innerHTML;
+  document.getElementById('finalMove').innerHTML = move;
+  let rating = '';
+  for (i = 0; i < starRating(); i++) {
+    rating += '<li><i class="fa fa-star"></i></li>';
+  }
+  document.getElementById('finalStar').innerHTML = rating;
 }
-
-
-
 
 
 

@@ -16,23 +16,23 @@
     <header>
       <!-- <h1>Matching game</h1> -->
     </header>
-    <button id="start-btn" class="btn">Start game</button>
-    <p id="timer"><span id="minutes"></span><span id="seconds">0 seconds</span></p>
-
+    <button id="start-btn" class="start-game">Start game</button>
+    <div class="box">
+      <p id="timer"><span id="minutes"></span><span id="seconds">0 seconds</span></p>
+    </div>
     <div id="myModal" class="modal">
 
       <!-- Modal content -->
       <div class="modal-content">
-        <span class="close">&times;</span>
         <p>Game complete</p>
-        <p id="finalMove">finalMove</p>
-        <p id="finalStar">finalStar</p>
+        <p><span class="finals" id="finalMove"></span> moves made</p>
+        <p>Star rating</p>
+        <ul id="finalStar" class="stars"></ul>
         <p>Completed in <span class="finals" id="finalTime"></span></p>
         <button id="restart-btn" class="btn">Restart game</button>
       </div>
 
     </div>
-
 
 
     <div id="score-panel-container">
@@ -45,9 +45,9 @@
 
         	<span class="moves" id="moves"></span> Moves
 
-            <div id="refresh" class="restart">
-        		<i class="fa fa-repeat"></i>
-        	</div>
+            <button id="refresh" class="restart">
+            Refresh <i class="fa fa-repeat"></i>
+        	</button>
         </section>
 
         <ul class="deck" id="deck">

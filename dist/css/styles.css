@@ -14,18 +14,19 @@ html {
   padding: 0; }
 
 body {
-  background: #ffffff url("../img/geometry2.png");
+  background: #ffffff url("../img/wool.png");
   /* Background pattern from Subtle Patterns */
   font-family: 'Coda', cursive; }
 
 .container {
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  margin-right: 24px;
-  margin-left: 24px;
-  max-width: 1000px; }
+  flex-direction: column; }
+
+.box {
+  margin: 0 24px; }
 
 h1 {
   font-family: 'Open Sans', sans-serif;
@@ -38,28 +39,29 @@ h1 {
 .finals {
   font-weight: 600; }
 
-.btn {
+button {
   border: none;
   border-radius: 3px;
   color: #fff;
-  margin-top: 24px;
-  background-color: #aa7ecd;
+  background-color: #17DBC4;
   padding: 7px; }
-  .btn:hover {
-    background-color: #BF9ED9; }
-  .btn:active {
-    background-color: #8256A5; }
+  button:hover {
+    background-color: #74E2D5; }
+  button:active {
+    background-color: #4ADAC9; }
+
+.start-game {
+  margin-top: 24px; }
 
 /*
  * Styles for the deck of cards
  */
 .deck {
-  width: 660px;
+  width: 680px;
   min-height: 680px;
-  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+  border: solid 2px #17DBC4;
   padding: 32px;
   border-radius: 10px;
-  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -68,18 +70,18 @@ h1 {
   .deck .card {
     height: 125px;
     width: 125px;
-    background: #2e3d49;
+    background: #111010;
+    border: solid 2px #17DBC4;
     font-size: 0;
     color: #ffffff;
     border-radius: 8px;
     cursor: pointer;
     display: flex;
     justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5); }
+    align-items: center; }
   .deck .open {
     transform: rotateY(0);
-    background: #02b3e4;
+    background: #17DBC4;
     cursor: default; }
   .deck .show {
     font-size: 33px; }
@@ -91,18 +93,19 @@ h1 {
 /*
  * Styles for the Score Panel
  */
+.stars {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin: 0 5px 0 0; }
+  .stars li {
+    list-style: none;
+    display: inline-block; }
+
 .score-panel {
   text-align: left;
   width: 345px;
   margin-bottom: 10px; }
-  .score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0; }
-    .score-panel .stars li {
-      list-style: none;
-      display: inline-block; }
   .score-panel .restart {
     float: right;
     cursor: pointer; }
@@ -110,6 +113,7 @@ h1 {
 /* Modal styles */
 /* The Modal (background) */
 .modal {
+  color: #444;
   display: none;
   /* Hidden by default */
   position: fixed;
