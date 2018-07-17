@@ -1,29 +1,27 @@
 // Handler when the DOM is fully loaded
 let open = [];
 let matchedCards = [];
-let moves = 0;
 let move = 0;
 let openCards = [];
 const icons = [
   'diamond',
-  'diamond'
-  // 'paper-plane-o',
-  // 'anchor',
-  // 'bolt',
-  // 'cube',
-  // 'anchor',
-  // 'leaf',
-  // 'bicycle',
-  // 'diamond',
-  // 'bomb',
-  // 'leaf',
-  // 'bomb',
-  // 'bolt',
-  // 'bicycle',
-  // 'paper-plane-o',
-  // 'cube',
+  'paper-plane-o',
+  'anchor',
+  'bolt',
+  'cube',
+  'anchor',
+  'leaf',
+  'bicycle',
+  'diamond',
+  'bomb',
+  'leaf',
+  'bomb',
+  'bolt',
+  'bicycle',
+  'paper-plane-o',
+  'cube',
 ];
-
+let scorePanel = '<section class="score-panel"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><p class="star-rating"><span class="moves" id="moves"></span> moves</p><button id="refresh-btn" class="restart">restart <i class="fa fa-repeat"></i></button><p id="timer"><span id="minutes"></span><span id="seconds">0 seconds</span></p></section><ul class="deck" id="deck"></ul>';
 
 document.getElementById("start-btn").addEventListener("click", startGame);
 document.getElementById("restart-btn").addEventListener("click", restartGame);
@@ -31,29 +29,27 @@ document.getElementById("restart-btn").addEventListener("click", restartGame);
 
 
 function startGame() {
-document.getElementById("timer").style.display = "block";
 
-  startTimer();
+
   document.getElementById("start-btn").remove();
-  document.getElementById('score-panel-container').innerHTML = '<section class="score-panel"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><span class="moves" id="moves"></span> Moves <div id="refresh-btn" class="restart"><i class="fa fa-repeat"></i></div></section><ul class="deck" id="deck"></ul>'
-  populateCards(icons)
+  document.getElementById('score-panel-container').innerHTML = scorePanel;
+  populateCards(icons);
+  startTimer();
   document.addEventListener('click', listen, false);
-  //document.getElementById("refresh-btn").addEventListener("click", restartGame);
+  document.getElementById("refresh-btn").addEventListener("click", restartGame);
 }
 
 function restartGame() {
-
+clearInterval(interval);
   let open = [];
   matchedCards = [];
   let move = 0;
   document.getElementById("timer").innerHTML = '';
   modal.style.display = "none";
-
+  populateCards(icons);
   startTimer();
-  document.getElementById('score-panel-container').innerHTML = '<section class="score-panel"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><span class="moves" id="moves"></span> Moves <div id="refresh-btn" class="restart"><i class="fa fa-repeat"></i></div></section><ul class="deck" id="deck"></ul>'
-  populateCards(icons)
   document.addEventListener('click', listen, false);
-  //document.getElementById("refresh-btn").addEventListener("click", restartGame);
+  document.getElementById("refresh-btn").addEventListener("click", restartGame);
 }
 
 /*
@@ -88,8 +84,6 @@ function listen(event) {
 }
 
 //start timer
-
-
 function startTimer() {
 
   const timer = document.getElementById('timer');
@@ -97,7 +91,6 @@ function startTimer() {
   interval = setInterval(function() {
     const delta = Date.now() - start; // milliseconds elapsed since start
     let elapsedTime = (Math.floor(delta / 1000));
-
     timer.innerHTML = elapsedTime + ' seconds';
     if (elapsedTime > 59) {
       let test = ((Math.floor(elapsedTime / 60)) * 60);
@@ -136,7 +129,6 @@ function checkMatch(card) {
     //do nothing
   } else if (length === 2) {
 
-
     move = ++move;
     document.getElementById("moves").innerHTML = move;
     starRating(move)
@@ -163,32 +155,18 @@ function removeClass(index0, index1) {
 }
 
 function completeGame() {
-
-  if (matchedCards.length === 2) {
-    //let finalTime = d
+  if (matchedCards.length === 16) {
     clearInterval(interval);
-
-
-    const deck = document.getElementById('deck');
-    deck.remove();
-
-    timer.style.display = "none";
     displayModal();
     printScore();
     move = 0;
     matchedCards = [];
-
-  } else {}
+  }
 }
 
 
 
-
-
-// Get the modal
 var modal = document.getElementById('myModal');
-
-// When the user clicks on the button, open the modal
 function displayModal() {
   modal.style.display = "block";
 }

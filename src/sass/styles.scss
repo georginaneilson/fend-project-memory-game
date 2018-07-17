@@ -41,14 +41,11 @@ h1 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
 }
-#timer {
-  display: none;
-  margin-left: auto;
 
-}
 .finals{
   font-weight: 600;
 }
+
 button {
   border: none;
   border-radius: 3px;
@@ -114,7 +111,8 @@ button {
 
   .match {
     cursor: default;
-    background: #02ccba;
+    background: #747474;
+    border: #747474;
     font-size: 33px;
   }
 }
@@ -133,17 +131,37 @@ button {
    }
  }
 .score-panel {
-  text-align: left;
-  width: 345px;
   margin-bottom: 10px;
+  .star-rating {
+    display: inline-block;
+  }
+  #timer {
+    float: right;
+  }
 
 
 
   .restart {
-    float: right;
+    margin-left: 14px;
     cursor: pointer;
   }
 }
+
+
+
+// .score-panel{
+//   p{display: inline-block;}
+//   button{
+//     display: inline-block;
+//   }
+//   #timer {
+//     display: inline-block;
+//     float: right;
+//     margin-left: auto;
+//
+//   }
+// }
+
 
 
 /* Modal styles */
