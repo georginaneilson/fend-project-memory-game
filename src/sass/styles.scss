@@ -156,11 +156,30 @@ button {
     //box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
   }
 
+  .close{
+    animation-name: flip;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    animation-duration: .75s;
+  }
+
   .open {
     transform: rotateY(0);
     background: #17DBC4;
     cursor: default;
+
+    animation-name: flipInY;
+  	-webkit-backface-visibility: visible !important;
+  	backface-visibility: visible !important;
+  	animation-duration: .75s;
+
+
+
   }
+
+
+
+
 
   .show {
     font-size: 33px;
@@ -171,7 +190,115 @@ button {
     background: #747474;
     border: #747474;
     font-size: 33px;
+
+
+    animation-name: flip;
+  	-webkit-backface-visibility: visible !important;
+  	backface-visibility: visible !important;
+  	animation-duration: .75s;
   }
+
+
+  //animations
+
+  /* animations */
+  @keyframes flip {
+    from {
+      -webkit-transform: perspective(1000px) rotate3d(0, 1, 0, -360deg);
+      transform: perspective(1000px) rotate3d(0, 1, 0, -360deg);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+
+    40% {
+      -webkit-transform: perspective(1000px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+      transform: perspective(1000px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+
+    50% {
+      -webkit-transform: perspective(1000px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+      transform: perspective(1000px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+      -webkit-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+
+    80% {
+      -webkit-transform: perspective(1000px) scale3d(0.95, 0.95, 0.95);
+      transform: perspective(1000px) scale3d(0.95, 0.95, 0.95);
+      -webkit-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+
+    to {
+      -webkit-transform: perspective(1000px);
+      transform: perspective(1000px);
+      -webkit-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+  }
+
+
+  @-webkit-keyframes flipInY {
+    from {
+      -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+      transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+      -webkit-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+      //opacity: 0;
+    }
+
+    40% {
+      -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+      transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+      -webkit-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+
+    60% {
+      -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+      transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+      //opacity: 1;
+    }
+
+    80% {
+      -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+      transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    }
+
+    to {
+      -webkit-transform: perspective(400px);
+      transform: perspective(400px);
+    }
+  }
+
+  @keyframes shake {
+    from,
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      -webkit-transform: translate3d(-10px, 0, 0);
+      transform: translate3d(-10px, 0, 0);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+      -webkit-transform: translate3d(10px, 0, 0);
+      transform: translate3d(10px, 0, 0);
+    }
+  }
+
+
 }
 /*
  * Styles for the Score Panel
@@ -277,8 +404,14 @@ button {
   border-radius: 3px;
   width: 60%;
   text-align: center;
-  .finalStar{
+  p{
+    margin-top: 0;
+  }
+  .finalStar {
     display: inline;
+  }
+  .stars-text{
+    display: inline-block;
   }
   .good-job-container{
       position: relative;
@@ -287,12 +420,13 @@ button {
     font-size: 34px;
     position: absolute;
     text-align: center;
-    margin: 0 auto 24px;
+    margin: 0 auto 18px;
     left: 0;
     right: 0;
   }
 }
 .btn--restart {
     margin-top: 75px;
+    margin-bottom:24px;
   }
 }

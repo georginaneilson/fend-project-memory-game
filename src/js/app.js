@@ -52,6 +52,7 @@ clearInterval(interval);
   let open = [];
   matchedCards = [];
   let move = 0;
+  document.getElementById("moves").innerHTML = move;
   document.getElementById("timer").innerHTML = '';
   modal.style.display = "none";
   populateCards(icons);
@@ -69,20 +70,21 @@ function populateCards(icons) {
   shuffle(icons);
   let array = [];
   for (i = 0; i < icons.length; i++) {
-    array.push('<li class="card" type="' + icons[i] + '"><i class="fa fa-' + icons[i] + '"></i></li>');
+    array.push('<li id="card" class="card close" type="' + icons[i] + '"><i class="fa fa-' + icons[i] + '"></i></li>');
   }
   document.getElementById('deck').innerHTML = (array.join(""));
-}
-
+} close
 
 function listen(event) {
   if ((event.target.classList.contains('match')) || (event.target.classList.contains('show'))) {
     //do nothing
   } else if (event.target.classList.contains('card')) {
+
     const card = event.target;
     showSymbol(card);
     checkMatch(card);
     completeGame();
+
 
 
   } else {
@@ -134,7 +136,6 @@ function checkMatch(card) {
   if (length < 2) {
     //do nothing
   } else if (length === 2) {
-
     move = ++move;
     document.getElementById("moves").innerHTML = move;
     starRating(move)
@@ -146,9 +147,13 @@ function checkMatch(card) {
       matchedCards.push(open[0]);
       matchedCards.push(open[1]);
       open.splice(0, 2);
-    } else {}
+    } else {
+
+    }
 
   } else {
+//card.classList.remove('flip');
+    //card.classList.add('flip');
     removeClass(open[0], open[1]);
     open.splice(0, 2)
 
@@ -162,6 +167,7 @@ function removeClass(index0, index1) {
 
 function completeGame() {
   if (matchedCards.length === 4) {
+
     clearInterval(interval);
     displayModal();
     printScore();
