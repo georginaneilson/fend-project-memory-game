@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Anonymous+Pro");
 html {
   box-sizing: border-box; }
 
@@ -25,12 +26,43 @@ body {
   align-items: center;
   flex-direction: column; }
 
-.box {
-  margin: 0 24px; }
+.start {
+  position: absolute;
+  top: 50%; }
+
+.header {
+  position: relative; }
+  .header .blending {
+    position: absolute;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0; }
+
+.c {
+  color: cyan;
+  top: -4px; }
+
+.m {
+  color: magenta;
+  top: -2px; }
+
+.y {
+  color: yellow;
+  top: 3px;
+  opacity: 0.9; }
+
+.k {
+  color: #000;
+  top: 0;
+  opacity: -0.5; }
 
 h1 {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300; }
+  font-family: 'Anonymous Pro', monospace;
+  font-weight: 600;
+  mix-blend-mode: screen;
+  font-size: 34px; }
 
 .finals {
   font-weight: 600; }
@@ -47,7 +79,8 @@ button {
     background-color: #4ADAC9; }
 
 .start-game {
-  margin-top: 24px; }
+  margin-top: 100px;
+  width: 100px; }
 
 /*
  * Styles for the deck of cards
@@ -100,13 +133,31 @@ button {
     display: inline-block; }
 
 .score-panel {
+  text-align: center;
   margin-bottom: 10px; }
-  .score-panel .star-rating {
-    display: inline-block; }
+  .score-panel .rating {
+    display: inline-block;
+    text-align: left;
+    float: left; }
+    .score-panel .rating .star-rating {
+      display: inline-block; }
+  .score-panel .restart-section {
+    margin-left: 75px;
+    display: inline-block;
+    padding-top: 12px; }
+  .score-panel .timer-section {
+    display: inline-block;
+    float: right;
+    width: 180px; }
   .score-panel #timer {
-    float: right; }
+    text-align: left;
+    float: right;
+    display: block; }
   .score-panel .restart {
-    margin-left: 14px;
+    width: 100px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
     cursor: pointer; }
 
 /* Modal styles */
@@ -139,18 +190,21 @@ button {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%; }
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold; }
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer; }
+  border: none;
+  border-radius: 3px;
+  width: 60%;
+  text-align: center; }
+  .modal-content .finalStar {
+    display: inline; }
+  .modal-content .good-job-container {
+    position: relative; }
+    .modal-content .good-job-container .good-job {
+      mix-blend-mode: multiply;
+      font-size: 34px;
+      position: absolute;
+      text-align: center;
+      margin: 0 auto 24px;
+      left: 0;
+      right: 0; }
+  .modal-content .btn--restart {
+    margin-top: 75px; }

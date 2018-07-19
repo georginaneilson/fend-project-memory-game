@@ -4,24 +4,32 @@ let matchedCards = [];
 let move = 0;
 let openCards = [];
 const icons = [
-  'diamond',
-  'paper-plane-o',
-  'anchor',
-  'bolt',
-  'cube',
-  'anchor',
-  'leaf',
-  'bicycle',
-  'diamond',
-  'bomb',
-  'leaf',
-  'bomb',
-  'bolt',
-  'bicycle',
-  'paper-plane-o',
-  'cube',
+//for testing//
+'diamond',
+'diamond',
+'cube',
+'cube',
+//end testing//
+
+
+  // 'diamond',
+  // 'paper-plane-o',
+  // 'anchor',
+  // 'bolt',
+  // 'cube',
+  // 'anchor',
+  // 'leaf',
+  // 'bicycle',
+  // 'diamond',
+  // 'bomb',
+  // 'leaf',
+  // 'bomb',
+  // 'bolt',
+  // 'bicycle',
+  // 'paper-plane-o',
+  // 'cube',
 ];
-let scorePanel = '<section class="score-panel"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><p class="star-rating"><span class="moves" id="moves"></span> moves</p><button id="refresh-btn" class="restart">restart <i class="fa fa-repeat"></i></button><p id="timer"><span id="minutes"></span><span id="seconds">0 seconds</span></p></section><ul class="deck" id="deck"></ul>';
+let scorePanel = '<section class="score-panel"><div class="rating"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><p class="star-rating">move <span class="moves" id="moves">0</span></p></div><div class="restart-section"><button id="refresh-btn" class="restart">restart <i class="fa fa-repeat"></i></button></div><div class="timer-section"><p id="timer"><span id="minutes"></span><span id="seconds">0 seconds</span></p></div></section><ul class="deck" id="deck"></ul>';
 
 document.getElementById("start-btn").addEventListener("click", startGame);
 document.getElementById("restart-btn").addEventListener("click", restartGame);
@@ -31,7 +39,7 @@ document.getElementById("restart-btn").addEventListener("click", restartGame);
 function startGame() {
 
 
-  document.getElementById("start-btn").remove();
+  document.getElementById("start").remove();
   document.getElementById('score-panel-container').innerHTML = scorePanel;
   populateCards(icons);
   startTimer();
@@ -107,11 +115,9 @@ function startTimer() {
 
 function starRating(counter) {
   let array = document.getElementsByClassName('fa-star');
-  if (counter === 10) {
-    array[0].remove();
-  } else if (counter === 5) {
+  if (counter === 20) {
     array[1].remove();
-  } else if (counter === 2) {
+  } else if (counter === 10) {
     array[2].remove();
   }
   return array.length;
@@ -155,7 +161,7 @@ function removeClass(index0, index1) {
 }
 
 function completeGame() {
-  if (matchedCards.length === 16) {
+  if (matchedCards.length === 4) {
     clearInterval(interval);
     displayModal();
     printScore();

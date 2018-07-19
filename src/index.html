@@ -13,30 +13,41 @@
 <body>
 
   <div class="container">
-    <header>
-      <!--<h1>Match this</h1>-->
-    </header>
-    <button id="start-btn" class="start-game">start</button>
-    <div class="box">
+    <div id="start" class="start">
+      <header class="header">
+        <h1 class="blending c">match this</h1>
+        <h1 class="blending y">match this</h1>
+        <h1 class="blending m">match this</h1>
+      </header>
 
+
+      <button id="start-btn" class="start-game">start</button>
     </div>
     <div id="myModal" class="modal">
 
-      <!-- Modal content -->
+      <!-- START: Modal content -->
       <div class="modal-content">
-        <p>game complete</p>
+        <h2>game complete</h2>
         <p><span class="finals" id="finalMove"></span> moves made</p>
         <p>star rating</p>
         <ul id="finalStar" class="stars"></ul>
         <p>completed in <span class="finals" id="finalTime"></span></p>
-        <p>good job</p>
-        <button id="restart-btn" class="btn">Restart game</button>
+        <div class="good-job-container">
+        <p class="good-job y">good job</p>
+        <p class="good-job c">good job</p>
+        <p class="good-job m">good job</p>
+        <p class="good-job k">good job</p>
+        </div>
+        <button id="restart-btn" class="btn--restart">Restart game</button>
       </div>
+      <!-- END: Modal content -->
 
     </div>
 
 
     <div id="score-panel-container">
+
+
       <!-- <section class="score-panel">
         	<ul class="stars">
         		<li><i class="fa fa-star"></i></li>

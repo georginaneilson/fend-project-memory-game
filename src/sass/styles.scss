@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro');
+
 html {
   box-sizing: border-box;
 }
@@ -28,21 +30,75 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  //margin-right: 24px;
-  //margin-left: 24px;
-  //max-width: 1000px;
+
+
 }
 
-.box {
-  margin: 0 24px;
+
+.start {
+  position: absolute;
+  top: 50%;
+
+}
+
+.header {
+  position: relative;
+  .blending {
+    position: absolute;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    //mix-blend-mode: multiply;
+    span {}
+  }
+
+
+
+  .w {
+    //color:#fff;
+  }
+}
+
+.c {
+  color: cyan;
+  top: -4px;
+  //opacity: 1;
+}
+
+.m {
+  color: magenta;
+  top: -2px;
+}
+
+.y {
+  color: yellow;
+  top: 3px;
+  opacity: 0.9;
+}
+.k {
+  color: #000;
+  top: 0;
+  opacity: -0.5;
 }
 
 h1 {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
+  font-family: 'Anonymous Pro', monospace;
+  font-weight: 600;
+  mix-blend-mode: screen;
+  font-size: 34px;
+  // position: absolute;
+  // text-align: center;
+  // margin-left: auto;
+  // margin-right: auto;
+  // left: 0;
+  // right: 0;
+  //z-index:100;
+  //margin-bottom: 24px;
 }
 
-.finals{
+.finals {
   font-weight: 600;
 }
 
@@ -54,21 +110,22 @@ button {
   padding: 7px;
 
   &:hover {
-    background-color: #74E2D5
+    background-color: #74E2D5;
   }
 
   &:active {
     background-color: #4ADAC9;
   }
+
 }
 
-  .start-game{
-    margin-top: 24px;
-  }
+.start-game {
+  margin-top: 100px;
+  width: 100px;
+}
 /*
  * Styles for the deck of cards
  */
-
 .deck {
   width: 680px;
   min-height: 680px;
@@ -119,36 +176,58 @@ button {
 /*
  * Styles for the Score Panel
  */
- .stars {
-   margin: 0;
-   padding: 0;
-   display: inline-block;
-   margin: 0 5px 0 0;
+.stars {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin: 0 5px 0 0;
 
-   li {
-     list-style: none;
-     display: inline-block;
-   }
- }
-.score-panel {
-  margin-bottom: 10px;
-  .star-rating {
+  li {
+    list-style: none;
     display: inline-block;
-  }
-  #timer {
-    float: right;
-  }
-
-
-
-  .restart {
-    margin-left: 14px;
-    cursor: pointer;
   }
 }
 
+.score-panel {
+  text-align: center;
+  margin-bottom: 10px;
 
+  .rating {
+    display: inline-block;
+    text-align: left;
+    float: left;
 
+    .star-rating {
+      display: inline-block;
+    }
+  }
+
+  .restart-section {
+    margin-left: 75px;
+    display: inline-block;
+    padding-top: 12px;
+  }
+
+  .timer-section {
+    display: inline-block;
+    float: right;
+    width: 180px;
+  }
+
+  #timer {
+    text-align: left;
+    float: right;
+    display: block;
+  }
+
+  .restart {
+    width: 100px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+  }
+}
 // .score-panel{
 //   p{display: inline-block;}
 //   button{
@@ -161,46 +240,59 @@ button {
 //
 //   }
 // }
-
-
-
 /* Modal styles */
 /* The Modal (background) */
+
 .modal {
   color: #444;
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0,0,0);
+  /* Fallback color */
+  background-color: rgba(0,0,0,0.4);
+  /* Black w/ opacity */
 }
 
 /* Modal Content */
+
 .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: none;
+  border-radius: 3px;
+  width: 60%;
+  text-align: center;
+  .finalStar{
+    display: inline;
+  }
+  .good-job-container{
+      position: relative;
+  .good-job {
+    mix-blend-mode: multiply;
+    font-size: 34px;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto 24px;
+    left: 0;
+    right: 0;
+  }
 }
-
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+.btn--restart {
+    margin-top: 75px;
+  }
 }
