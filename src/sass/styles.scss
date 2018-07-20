@@ -160,8 +160,11 @@ button {
     animation-duration: 0.75s;
   }
 
+/*
+  animations from Animate.css
+  https://github.com/daneden/animate.css
+*/
 
-  /* animations */
   @keyframes flip {
     from {
       -webkit-transform: perspective(1000px) rotate3d(0, 1, 0, -360deg);
@@ -294,21 +297,15 @@ p{
 .modal {
   color: #444;
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
   padding-top: 100px;
-  /* Location of the box */
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
+  
   &__content {
     background-color: #fefefe;
     margin: auto;

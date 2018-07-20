@@ -89,7 +89,10 @@ button {
   justify-content: space-between;
   align-items: center;
   margin: 0 0 3em;
-  /* animations */ }
+  /*
+  animations from Animate.css
+  https://github.com/daneden/animate.css
+*/ }
   .deck .card {
     height: 125px;
     width: 125px;
@@ -215,21 +218,14 @@ button {
 .modal {
   color: #444;
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
   padding-top: 100px;
-  /* Location of the box */
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
-  overflow: auto;
-  /* Enable scroll if needed */ }
+  overflow: auto; }
   .modal__content {
     background-color: #fefefe;
     margin: auto;
