@@ -4,40 +4,29 @@ let matchedCards = [];
 let move = 0;
 let openCards = [];
 const icons = [
-//for testing//
-'diamond',
-'diamond',
-'cube',
-'cube',
-//end testing//
-
-
-  // 'diamond',
-  // 'paper-plane-o',
-  // 'anchor',
-  // 'bolt',
-  // 'cube',
-  // 'anchor',
-  // 'leaf',
-  // 'bicycle',
-  // 'diamond',
-  // 'bomb',
-  // 'leaf',
-  // 'bomb',
-  // 'bolt',
-  // 'bicycle',
-  // 'paper-plane-o',
-  // 'cube',
+  'diamond',
+  'paper-plane-o',
+  'anchor',
+  'bolt',
+  'cube',
+  'anchor',
+  'leaf',
+  'bicycle',
+  'diamond',
+  'bomb',
+  'leaf',
+  'bomb',
+  'bolt',
+  'bicycle',
+  'paper-plane-o',
+  'cube',
 ];
-let scorePanel = '<section class="score-panel"><div class="rating"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><p class="star-rating">move <span class="moves" id="moves">0</span></p></div><div class="restart-section"><button id="refresh-btn" class="restart">restart <i class="fa fa-repeat"></i></button></div><div class="timer-section"><p id="timer"><span id="minutes"></span><span id="seconds">0 seconds</span></p></div></section><ul class="deck" id="deck"></ul>';
+let scorePanel = '<section class="score-panel"><div class="rating"><ul class="stars"><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></ul><p class="move">move <span class="moves" id="moves">0</span></p></div><div class="restart-section"><button id="refresh-btn" class="restart">restart <i class="fa fa-repeat"></i></button></div><div class="timer-section"><p id="timer"><span id="minutes"></span><span id="seconds">0 seconds</span></p></div></section><ul class="deck" id="deck"></ul>';
 
-document.getElementById("start-btn").addEventListener("click", startGame);
+document.getElementById("startButton").addEventListener("click", startGame);
 document.getElementById("restart-btn").addEventListener("click", restartGame);
 
-
-
 function startGame() {
-
 
   document.getElementById("start").remove();
   document.getElementById('score-panel-container').innerHTML = scorePanel;
@@ -84,11 +73,6 @@ function listen(event) {
     showSymbol(card);
     checkMatch(card);
     completeGame();
-
-
-
-  } else {
-    //do nothing
   }
 
 }
@@ -152,8 +136,7 @@ function checkMatch(card) {
     }
 
   } else {
-//card.classList.remove('flip');
-    //card.classList.add('flip');
+
     removeClass(open[0], open[1]);
     open.splice(0, 2)
 
@@ -166,7 +149,7 @@ function removeClass(index0, index1) {
 }
 
 function completeGame() {
-  if (matchedCards.length === 4) {
+  if (matchedCards.length === 16) {
 
     clearInterval(interval);
     displayModal();
@@ -178,7 +161,7 @@ function completeGame() {
 
 
 
-var modal = document.getElementById('myModal');
+var modal = document.getElementById('gameCompleteModal');
 function displayModal() {
   modal.style.display = "block";
 }
@@ -192,7 +175,8 @@ function printScore() {
   for (i = 0; i < starRating(); i++) {
     rating += '<li><i class="fa fa-star"></i></li>';
   }
-  document.getElementById('finalStar').innerHTML = rating;
+  document.getElementById('starRating').innerHTML = rating;
+  document.getElementById('starRating').innerHTML = rating;
 }
 
 

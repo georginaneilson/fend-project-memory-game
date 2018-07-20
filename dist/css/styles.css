@@ -15,57 +15,9 @@ html {
   padding: 0; }
 
 body {
-  background: #ffffff url("../img/wool.png");
+  background: url("../img/wool.png");
   /* Background pattern from Subtle Patterns */
   font-family: 'Coda', cursive; }
-
-.container {
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; }
-
-.start {
-  position: absolute;
-  top: 50%; }
-
-.header {
-  position: relative; }
-  .header .blending {
-    position: absolute;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0; }
-
-.c {
-  color: cyan;
-  top: -4px; }
-
-.m {
-  color: magenta;
-  top: -2px; }
-
-.y {
-  color: yellow;
-  top: 3px;
-  opacity: 0.9; }
-
-.k {
-  color: #000;
-  top: 0;
-  opacity: -0.5; }
-
-h1 {
-  font-family: 'Anonymous Pro', monospace;
-  font-weight: 600;
-  mix-blend-mode: screen;
-  font-size: 34px; }
-
-.finals {
-  font-weight: 600; }
 
 button {
   border: none;
@@ -78,9 +30,50 @@ button {
   button:active {
     background-color: #4ADAC9; }
 
-.start-game {
-  margin-top: 100px;
-  width: 100px; }
+.container {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+
+.cyan {
+  color: cyan;
+  top: -4px; }
+
+.magenta {
+  color: magenta;
+  top: -2px; }
+
+.yellow {
+  color: yellow;
+  top: 3px;
+  opacity: 0.9; }
+
+.landing-section {
+  position: absolute;
+  top: 50%;
+  width: 100%; }
+  .landing-section header {
+    position: relative; }
+    .landing-section header .blending {
+      position: absolute;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 0; }
+    .landing-section header h1 {
+      font-family: 'Anonymous Pro', monospace;
+      font-weight: 600;
+      mix-blend-mode: screen;
+      font-size: 34px; }
+  .landing-section__btn {
+    display: block;
+    margin-top: 100px;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto; }
 
 /*
  * Styles for the deck of cards
@@ -113,7 +106,7 @@ button {
     animation-name: flip;
     -webkit-backface-visibility: visible !important;
     backface-visibility: visible !important;
-    animation-duration: .75s; }
+    animation-duration: 0.75s; }
   .deck .open {
     transform: rotateY(0);
     background: #17DBC4;
@@ -121,7 +114,7 @@ button {
     animation-name: flipInY;
     -webkit-backface-visibility: visible !important;
     backface-visibility: visible !important;
-    animation-duration: .75s; }
+    animation-duration: 0.75s; }
   .deck .show {
     font-size: 33px; }
   .deck .match {
@@ -132,7 +125,7 @@ button {
     animation-name: flip;
     -webkit-backface-visibility: visible !important;
     backface-visibility: visible !important;
-    animation-duration: .75s; }
+    animation-duration: 0.75s; }
 
 @keyframes flip {
   from {
@@ -182,46 +175,24 @@ button {
     -webkit-transform: perspective(400px);
     transform: perspective(400px); } }
 
-@keyframes shake {
-  from,
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0); }
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    -webkit-transform: translate3d(-10px, 0, 0);
-    transform: translate3d(-10px, 0, 0); }
-  20%,
-  40%,
-  60%,
-  80% {
-    -webkit-transform: translate3d(10px, 0, 0);
-    transform: translate3d(10px, 0, 0); } }
-
-/*
- * Styles for the Score Panel
- */
-.stars {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  margin: 0 5px 0 0; }
-  .stars li {
-    list-style: none;
-    display: inline-block; }
-
+/* Styles for the Score Panel */
 .score-panel {
   text-align: center;
   margin-bottom: 10px; }
+  .score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0; }
+    .score-panel .stars li {
+      list-style: none;
+      display: inline-block; }
+  .score-panel p {
+    display: inline-block; }
   .score-panel .rating {
     display: inline-block;
     text-align: left;
     float: left; }
-    .score-panel .rating .star-rating {
-      display: inline-block; }
   .score-panel .restart-section {
     margin-left: 75px;
     display: inline-block;
@@ -241,8 +212,6 @@ button {
     margin-right: auto;
     cursor: pointer; }
 
-/* Modal styles */
-/* The Modal (background) */
 .modal {
   color: #444;
   display: none;
@@ -260,37 +229,33 @@ button {
   height: 100%;
   /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
-  background-color: black;
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */ }
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: none;
-  border-radius: 3px;
-  width: 60%;
-  text-align: center; }
-  .modal-content p {
-    margin-top: 0; }
-  .modal-content .finalStar {
-    display: inline; }
-  .modal-content .stars-text {
-    display: inline-block; }
-  .modal-content .good-job-container {
-    position: relative; }
-    .modal-content .good-job-container .good-job {
-      mix-blend-mode: multiply;
-      font-size: 34px;
-      position: absolute;
-      text-align: center;
-      margin: 0 auto 18px;
-      left: 0;
-      right: 0; }
-  .modal-content .btn--restart {
-    margin-top: 75px;
-    margin-bottom: 24px; }
+  /* Enable scroll if needed */ }
+  .modal__content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: none;
+    border-radius: 3px;
+    width: 60%;
+    text-align: center; }
+    .modal__content .bold {
+      font-weight: 600; }
+    .modal__content p {
+      margin-top: 0; }
+    .modal__content--moves {
+      display: inline; }
+    .modal__content--star-rating {
+      display: inline-block; }
+    .modal__content .message {
+      position: relative; }
+      .modal__content .message p {
+        mix-blend-mode: multiply;
+        font-size: 34px;
+        position: absolute;
+        text-align: center;
+        margin: 0 auto 18px;
+        left: 0;
+        right: 0; }
+    .modal__content--btn {
+      margin-top: 75px;
+      margin-bottom: 24px; }
